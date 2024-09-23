@@ -10,6 +10,7 @@ const MeetingSetUp = ({ setIsSetupComplete,
 }) => {
 
     const [isMicCamToggled, setIsMicCamToggled] = useState(false);
+    
 
     const call = useCall();
     if (!call) {
@@ -57,3 +58,14 @@ const MeetingSetUp = ({ setIsSetupComplete,
 }
 
 export default MeetingSetUp
+
+
+// import React from 'react'
+
+// const MeetingSetUp = () => {
+//   return (
+//     <div>MeetingSetUp</div>
+//   )
+// }
+
+// export default MeetingSetUp

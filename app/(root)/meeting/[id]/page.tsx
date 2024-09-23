@@ -6,10 +6,11 @@ import MeetingSetUp from '@/components/MeetingSetUp';
 import { useGetCallById } from '@/hooks/useGetCallById';
 import { useUser } from '@clerk/nextjs';
 import { StreamCall, StreamTheme } from '@stream-io/video-react-sdk'
+import { useParams } from 'next/navigation';
 import React, { useState } from 'react'
 
 const Meeting = ({ params: { id } }: { params: { id: string } }) => {
-
+    // const { id } = useParams();
     const { isLoaded, user } = useUser();
     const { call, isCallLoading } = useGetCallById(id);
     const [isSetupComplete, setIsSetupComplete] = useState(false);
@@ -21,6 +22,11 @@ const Meeting = ({ params: { id } }: { params: { id: string } }) => {
             Call Not Found
         </p>
     );
+
+    const notAllowed = call.type === 'invited' && (!user || !call.state.members.find((m) => m.user.id === user.id));
+
+//   if (notAllowed) return <Alert title="You are not allowed to join this meeting" />;
+
 
     return (
         <main className="h-screen w-full">
